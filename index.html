@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bizning 2 yilligimiz ❤️</title>
+  <style>
+    :root{
+      --bg1:#050B1E; --bg2:#0D1B2A; --card:rgba(255,255,255,.08);
+      --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.7);
+      --accent:#6EA8FF; --love:#FF4D6D;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 20% 10%, #1a2a6c 0%, transparent 60%),
+                  radial-gradient(1000px 700px at 80% 0%, #b21f1f 0%, transparent 55%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    .wrap{ max-width:980px; margin:0 auto; padding:28px 18px 60px; }
+    .top{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      padding:10px 14px; border-radius:999px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{ width:10px; height:10px; border-radius:50%; background:var(--love); box-shadow:0 0 18px rgba(255,77,109,.9); }
+    h1{ margin:18px 0 10px; font-size: clamp(26px, 4vw, 44px); line-height:1.1; letter-spacing:.2px; }
+    .sub{ color:var(--muted); font-size: clamp(14px, 2vw, 18px); margin-bottom:22px; }
+
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:16px; }
+    @media (max-width:860px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:18px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 50px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::after{
+      content:""; position:absolute; inset:-40px;
+      background: radial-gradient(circle at 20% 30%, rgba(110,168,255,.18), transparent 40%),
+                  radial-gradient(circle at 70% 10%, rgba(255,77,109,.16), transparent 40%);
+      pointer-events:none;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .counter{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width:520px){ .counter{ grid-template-columns: repeat(3, 1fr);} }
+
+    .pill{
+      padding:14px 10px;
+      border-radius:18px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+      text-align:center;
+    }
+    .num{ font-size: clamp(22px, 3.2vw, 34px); font-weight:800; }
+    .lab{ font-size:12px; color:var(--muted); letter-spacing:.6px; text-transform:uppercase; }
+
+    .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    button{
+      border:0; cursor:pointer;
+      padding:12px 14px;
+      border-radius:16px;
+      color:var(--text);
+      background: rgba(110,168,255,.18);
+      border:1px solid rgba(110,168,255,.35);
+      transition: transform .08s ease, background .2s ease;
+    }
+    button:hover{ background: rgba(110,168,255,.26); }
+    button:active{ transform: scale(.98); }
+    .danger{ background: rgba(255,77,109,.18); border:1px solid rgba(255,77,109,.35); }
+    .danger:hover{ background: rgba(255,77,109,.26); }
+
+    .secret{
+      margin-top:14px;
+      display:none;
+      padding:14px;
+      border-radius:18px;
+      background: rgba(0,0,0,.22);
+      border:1px dashed rgba(255,255,255,.25);
+      line-height:1.55;
+    }
+    .mini{ color:var(--muted); font-size:13px; margin-top:10px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    .ph{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.2);
+      aspect-ratio: 4/3;
+      overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.6);
+      font-size:13px;
+    }
+    .ph img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .heart{
+      position:fixed; bottom:-40px;
+      font-size:18px; opacity:.75;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      from{ transform: translateY(0) translateX(0) scale(1); opacity:.0; }
+      10%{opacity:.8}
+      to{ transform: translateY(-110vh) translateX(var(--drift)) scale(1.6); opacity:0; }
+    }
+    footer{ margin-top:18px; color:rgba(255,255,255,.55); font-size:12px; text-align:center; }
+
+    /* YO‘Q tugmasi qochishi uchun */
+    #loveQuestion { position: relative; }
+    #noLoveBtn { position: relative; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="badge"><span class="dot"></span><b>6-fevral — Bizning 2 yilligimiz</b></div>
+      <div class="badge">💙 “Biz” — bir oilamiz!</div>
+    </div>
+
+    <h1>Mashhuram, bu sahifa faqat siz uchun ❤️</h1>
+    <div class="sub">
+      Bizning tariximiz oddiy boshlangan bo‘lishi mumkin, lekin men uchun u eng qimmat hikoya.
+      Pastda vaqtimizni ko‘rib turibsiz — bu faqat sonlar emas, bu <b>bizning xotiralarimiz</b>.
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2 style="margin:0 0 6px">Biz birgamiz...</h2>
+
+        <div class="counter">
+          <div class="pill"><div class="num" id="years">—</div><div class="lab">Yil</div></div>
+          <div class="pill"><div class="num" id="months">—</div><div class="lab">Oy</div></div>
+          <div class="pill"><div class="num" id="days">—</div><div class="lab">Kun</div></div>
+          <div class="pill"><div class="num" id="hours">—</div><div class="lab">Soat</div></div>
+          <div class="pill"><div class="num" id="mins">—</div><div class="lab">Daqiqa</div></div>
+          <div class="pill"><div class="num" id="secs">—</div><div class="lab">Sekund</div></div>
+        </div>
+
+        <div class="btns">
+          <button id="revealBtn">🎁 Tabrigim, (sovg'ani bosing)</button>
+          <button class="danger" id="confettiBtn">💥 Surprise!</button>
+        </div>
+
+        <div class="secret" id="secret">
+          <b>Mashhuram,</b><br/>
+          Mana bizning birgalikdagi sarguzashtlarimizga hash-pash deguncha 2 yil bo'libdi, Tog'risini tan olaman bu 2 yil ichida sizi ko'p xursand qila olmadim, siz hohlagandek inson bo'la olmadim, sizi juda ham ko'p ko'nglizi og'ritdim, hafa qildim. Buni bilishizi bilaman lekin baribir aytaman man sizi umuman hafa qilishni hohlamiman lekin manimcha amalda buni eplay olmayapman. Qo'shimchasiga sizga hozirgi kunda sovg'alar yoki oddiygina syurprizlar ham qila olmayapman bu qachongacha davom etadi o'zim ham bilmiman. Lekin man sizga shu 2 yil ichida siz manga ulashgan barcha hissiyotlar, xotiralar(oz bo'lsa ham uchrashuvlarimizdagi kulgular, har bir qadrli so'zlariz, ulashilgan energiya va mehrlariz) uchun katta rahmat aytaman va borizga shukr qilaman. Tan olaman sizga o'xshagan sodiq, quvnoq, manga ishongan va mani chin ko'ngildan sevadigan qiz boshqa topa olmiman.
+          <br/>Mashhuram, kichkintoyim, man sizi rossayam qattiq sevaman❤️‍🔥 va xudo xoxlasa oxirigacha siz bilan birga bo'laman🫂 Ha aytganizdek odam rostan o'zgarar ekan😄
+Oldin urishganimizda istoriyalar qo'yar edim sizga hozir esa web sahifalay yaratyapman🤭<br/>
+          <i>— Hurmat ila, UMIDJON</i>
+        </div>
+
+        <div class="btns" id="afterReadArea" style="display:none; margin-top:12px;">
+          <button id="readDoneBtn">✅ O‘qib bo‘ldim, davom etamiz</button>
+        </div>
+
+        <div class="card" id="loveQuestion" style="display:none; margin-top:14px;">
+          <h3 style="margin:0 0 10px;">Siz ham meni sevasizmi? 😳❤️</h3>
+          <div class="btns">
+            <button id="yesLoveBtn">Ha, rossa ham sevaman ❤️</button>
+            <button id="noLoveBtn" class="danger">YO‘Q</button>
+          </div>
+          <div class="mini" id="noHint" style="display:none;">😅 YO‘Q tugmasini baribir bosa olmaysiz😅😅...</div>
+          <div class="mini" id="noJokes" style="display:none;"></div>
+        </div>
+
+        <div class="card" id="memoryStep" style="display:none; margin-top:14px;">
+          <h3 style="margin:0 0 10px;">Bu onlarni tarixga muhrlang 📸</h3>
+          <div class="mini">Kamerani oching, selfi oling. Xohlasangiz yuklab olasiz.</div>
+
+          <div class="btns" style="margin-top:12px;">
+            <button id="openCamBtn">📷 Kamerani ochish</button>
+            <button id="takePhotoBtn" style="display:none;">✨ Selfi olish</button>
+            <button id="downloadBtn" style="display:none;">⬇️ Rasmni yuklab olish</button>
+            <button id="writeNoteBtn" style="display:none; padding:16px 18px; font-size:16px;">💌 Tabrik qoldirish</button>
+          </div>
+
+          <div id="noteForm" style="display:none; margin-top:14px;">
+            <textarea id="noteText" rows="5"
+              placeholder="Bu yerga o‘z his-tuyg‘ularingizni yozing... 💙"
+              style="width:100%; padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,.14);
+                     background:rgba(0,0,0,.22); color:rgba(255,255,255,.92); outline:none; resize:vertical;"></textarea>
+
+            <div class="btns" style="margin-top:10px;">
+              <button id="saveNoteBtn">✅ Saqlash</button>
+              <button id="cancelNoteBtn" class="danger">Bekor qilish</button>
+            </div>
+            <div class="mini">Saqlangandan keyin tabrik galereya tagida ko‘rinadi.</div>
+          </div>
+
+          <div style="display:grid; gap:10px; margin-top:12px;">
+            <video id="cam" autoplay playsinline style="width:100%; border-radius:18px; display:none; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.2)"></video>
+            <img id="photoPreview" alt="selfie" style="width:100%; border-radius:18px; display:none; border:1px solid rgba(255,255,255,.12);" />
+            <canvas id="shot" style="width:100%; border-radius:18px; display:none; border:1px solid rgba(255,255,255,.12);"></canvas>
+          </div>
+
+          <div class="mini" id="camNote" style="margin-top:10px; display:none;">
+            Eslatma: Kamera ishlashi uchun ruxsat (Allow camera) beriladi.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin:0 0 6px">Bizning Xotiralarimiz 📸</h2>
+
+        <div class="gallery">
+          <div class="ph"><img src="photo1.jpg" alt="photo1" onerror="this.remove(); this.parentElement.textContent='-5197195249376235469_121.jpg'"></div>
+          <div class="ph"><img src="photo2.jpg" alt="photo2" onerror="this.remove(); this.parentElement.textContent='-5197195249376235468_121.jpg'"></div>
+          <div class="ph"><img src="photo3.jpg" alt="photo3" onerror="this.remove(); this.parentElement.textContent='-5197195249376235467_121.jpg'"></div>
+          <div class="ph"><img src="photo4.jpg" alt="photo4" onerror="this.remove(); this.parentElement.textContent='-5197195249376235466_121.jpg'"></div>
+        </div>
+
+        <div id="notesArea" style="margin-top:14px;">
+          <h3 style="margin:0 0 8px;">💌 Qoldirilgan tabrik</h3>
+          <div class="mini" id="notesEmpty">Hali tabrik yozilmagan.</div>
+          <div id="savedNoteCard" class="secret" style="display:none; margin-top:10px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>“Biz” sahifasi — 2 yillik esdalik. ❤️</footer>
+  </div>
+
+  <script>
+    // Boshlanish vaqtini shu yerda yozing (Toshkent vaqti)
+    const start = new Date("2024-02-06T00:00:00+05:00");
+
+    const elYears = document.getElementById("years");
+    const elMonths = document.getElementById("months");
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMins = document.getElementById("mins");
+    const elSecs = document.getElementById("secs");
+
+    function tick(){
+      const now = new Date();
+      let startDate = new Date(start);
+      let current = new Date(now);
+
+      let years = current.getFullYear() - startDate.getFullYear();
+      let months = current.getMonth() - startDate.getMonth();
+      let days = current.getDate() - startDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(current.getFullYear(), current.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      // soat/minut/sekund
+      const dayStart = new Date(current.getFullYear(), current.getMonth(), current.getDate(),
+        startDate.getHours(), startDate.getMinutes(), startDate.getSeconds());
+      let diffMs = now - dayStart;
+      if (diffMs < 0) diffMs += 24*60*60*1000;
+
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+
+      elYears.textContent = years;
+      elMonths.textContent = months;
+      elDays.textContent = days;
+      elHours.textContent = String(hours).padStart(2, "0");
+      elMins.textContent = String(mins).padStart(2, "0");
+      elSecs.textContent = String(secs).padStart(2, "0");
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Hearts
+    const hearts = ["❤️","💙","💖","💘","💕","💗"];
+    function popHearts(count){
+      for(let i=0;i<count;i++){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        h.style.left = Math.random()*100 + "vw";
+        h.style.setProperty("--drift", (Math.random()*160 - 80) + "px");
+        const dur = 3 + Math.random()*2.8;
+        h.style.animationDuration = dur + "s";
+        h.style.fontSize = (14 + Math.random()*22) + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), dur*1000);
+      }
+    }
+    setInterval(() => popHearts(2), 1400);
+
+    // Secret
+    const revealBtn = document.getElementById("revealBtn");
+    const secret = document.getElementById("secret");
+    const afterReadArea = document.getElementById("afterReadArea");
+    const readDoneBtn = document.getElementById("readDoneBtn");
+
+    revealBtn.addEventListener("click", () => {
+      const willOpen = secret.style.display !== "block";
+      secret.style.display = willOpen ? "block" : "none";
+      popHearts(18);
+
+      if (willOpen) afterReadArea.style.display = "flex";
+      else {
+        afterReadArea.style.display = "none";
+        loveQuestion.style.display = "none";
+        memoryStep.style.display = "none";
+      }
+    });
+
+    document.getElementById("confettiBtn").addEventListener("click", () => popHearts(40));
+
+    // Love question flow
+    const loveQuestion = document.getElementById("loveQuestion");
+    const yesLoveBtn = document.getElementById("yesLoveBtn");
+    const noLoveBtn = document.getElementById("noLoveBtn");
+    const noHint = document.getElementById("noHint");
+    const noJokes = document.getElementById("noJokes");
+
+    let noEscapeCount = 0;
+    const jokes = [
+      "😄 YO‘Q deyish tugmasi bugun ishlamayapti shekilli…",
+      "🙈 Ehtiyot bo‘ling, u qochib ketadi!",
+      "😂 YO‘Q bosaman deganingizda u sizdan tezroq!",
+      "😏 Sizni sinayapman: qaysi tugmani bosasiz?",
+      "💙 Menimcha, javob allaqachon ma’lum…",
+      "🤭 YO‘Q tugmasi: ‘Men bu yerda emasman!’",
+      "😌 Endi rostini aytamizmi?",
+      "💘 Ha tugmasi xafa bo‘lib qolyapti-ku…",
+      "🫶 Qani, yurakni tinglaymiz 😉",
+      "✅ Endi ‘Ha, rossa ham sevaman’ni bossak bo’ladi 😄"
+    ];
+
+    readDoneBtn.addEventListener("click", () => {
+      loveQuestion.style.display = "block";
+      popHearts(25);
+    });
+
+    function moveNoButton() {
+      noHint.style.display = "block";
+      noEscapeCount++;
+      noJokes.style.display = "block";
+      const idx = Math.min(noEscapeCount - 1, jokes.length - 1);
+      noJokes.textContent = jokes[idx];
+
+      const container = loveQuestion.getBoundingClientRect();
+      const btn = noLoveBtn.getBoundingClientRect();
+      const maxX = container.width - btn.width - 20;
+      const maxY = container.height - btn.height - 20;
+
+      const x = Math.max(10, Math.floor(Math.random() * maxX));
+      const y = Math.max(10, Math.floor(Math.random() * maxY));
+      noLoveBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      if (noEscapeCount >= 5) {
+        yesLoveBtn.style.boxShadow = "0 0 28px rgba(255,77,109,.35)";
+        yesLoveBtn.style.border = "1px solid rgba(255,77,109,.35)";
+      }
+    }
+    noLoveBtn.addEventListener("mouseenter", moveNoButton);
+    noLoveBtn.addEventListener("touchstart", (e) => { e.preventDefault(); moveNoButton(); }, { passive:false });
+
+    // Memory/camera
+    const memoryStep = document.getElementById("memoryStep");
+    const openCamBtn = document.getElementById("openCamBtn");
+    const takePhotoBtn = document.getElementById("takePhotoBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const cam = document.getElementById("cam");
+    const shot = document.getElementById("shot");
+    const photoPreview = document.getElementById("photoPreview");
+    const camNote = document.getElementById("camNote");
+
+    const writeNoteBtn = document.getElementById("writeNoteBtn");
+    const noteForm = document.getElementById("noteForm");
+    const noteText = document.getElementById("noteText");
+    const saveNoteBtn = document.getElementById("saveNoteBtn");
+    const cancelNoteBtn = document.getElementById("cancelNoteBtn");
+    const savedNoteCard = document.getElementById("savedNoteCard");
+    const notesEmpty = document.getElementById("notesEmpty");
+
+    let camStream = null;
+    let lastPhotoDataUrl = null;
+
+    function renderSavedNote() {
+      const note = localStorage.getItem("love_note_text");
+      if (note && note.trim().length > 0) {
+        notesEmpty.style.display = "none";
+        savedNoteCard.style.display = "block";
+        savedNoteCard.innerHTML = "<b>💌 Tabrik:</b><br><br>" + note
+          .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+          .replaceAll("\n","<br>");
+      } else {
+        notesEmpty.style.display = "block";
+        savedNoteCard.style.display = "none";
+        savedNoteCard.innerHTML = "";
+      }
+    }
+    renderSavedNote();
+
+    writeNoteBtn.addEventListener("click", () => {
+      noteForm.style.display = "block";
+      noteText.focus();
+      popHearts(12);
+    });
+    cancelNoteBtn.addEventListener("click", () => noteForm.style.display = "none");
+    saveNoteBtn.addEventListener("click", () => {
+      const text = (noteText.value || "").trim();
+      if (text.length < 3) return alert("Iltimos, kamida bir nechta so‘z yozing 😊");
+      localStorage.setItem("love_note_text", text);
+      noteForm.style.display = "none";
+      noteText.value = "";
+      renderSavedNote();
+      document.getElementById("notesArea").scrollIntoView({ behavior: "smooth", block: "start" });
+      popHearts(25);
+    });
+
+    yesLoveBtn.addEventListener("click", () => {
+      memoryStep.style.display = "block";
+      popHearts(40);
+      noHint.style.display = "none";
+      noJokes.style.display = "none";
+      yesLoveBtn.disabled = true;
+      noLoveBtn.style.display = "none";
+    });
+
+    openCamBtn.addEventListener("click", async () => {
+      try {
+        camNote.style.display = "block";
+        camStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
+        cam.srcObject = camStream;
+        cam.style.display = "block";
+        takePhotoBtn.style.display = "inline-block";
+        popHearts(10);
+      } catch {
+        alert("Kameraga ruxsat berilmadi. Chrome/Safari’da urinib ko‘ring.");
+      }
+    });
+
+    takePhotoBtn.addEventListener("click", () => {
+      if (!camStream) return;
+
+      const w = cam.videoWidth || 720;
+      const h = cam.videoHeight || 1280;
+      shot.width = w; shot.height = h;
+
+      const ctx = shot.getContext("2d");
+      ctx.drawImage(cam, 0, 0, w, h);
+      ctx.font = "bold 36px system-ui";
+      ctx.fillStyle = "rgba(255,255,255,.92)";
+      ctx.fillText("Bizning 2 yilligimiz ❤️", 30, 60);
+      ctx.font = "24px system-ui";
+      ctx.fillStyle = "rgba(255,255,255,.8)";
+      ctx.fillText(new Date().toLocaleString("uz-UZ"), 30, 100);
+
+      lastPhotoDataUrl = shot.toDataURL("image/png");
+      photoPreview.src = lastPhotoDataUrl;
+      photoPreview.style.display = "block";
+      downloadBtn.style.display = "inline-block";
+      writeNoteBtn.style.display = "inline-block";
+
+      try { camStream.getTracks().forEach(t => t.stop()); } catch {}
+      camStream = null;
+      cam.style.display = "none";
+      takePhotoBtn.style.display = "none";
+      popHearts(25);
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      if (!lastPhotoDataUrl) return;
+      const a = document.createElement("a");
+      a.href = lastPhotoDataUrl;
+      a.download = "bizning-2-yillik-selfie.png";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+  </script>
+</body>
+</html>
